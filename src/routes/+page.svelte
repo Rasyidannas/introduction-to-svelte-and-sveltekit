@@ -6,7 +6,13 @@
       text: "Custom Buttom",
       title: "Custom Title"
    }
+
+   let newMessage;
+   const addMessage = (e) => {
+      newMessage = e.detail
+   }
 </script>
 
-<Button {...obj}/>
-<Messages />
+<!--on:addMsg will listed dispatcher-->
+<Button {...obj} on:addMsg={addMessage}/>
+<Messages {newMessage} />

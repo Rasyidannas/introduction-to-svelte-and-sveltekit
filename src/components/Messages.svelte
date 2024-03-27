@@ -1,4 +1,6 @@
 <script>
+   export let newMessage = "No click yet";
+   
    let messages = ['msg1', 'msg2', 'msg3', 'msg4', 'msg5', 'msg6']
    const msgPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -12,11 +14,7 @@
 {#await msgPromise}
    <p>Loading...</p>
 {:then messages}
-   <ul>
-      {#each messages as message}
-         <li>{message}</li>
-      {/each}
-   </ul>
+   <p>{messages} {newMessage}</p>
 {:catch error}
    <p>{error}</p>
 {/await}
