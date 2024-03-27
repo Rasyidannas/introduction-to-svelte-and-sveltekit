@@ -1,26 +1,22 @@
 <script>
-   let messages = ['msg1', 'msg2', 'msg3', 'msg4', 'msg5', 'msg6']
+   export let messages
 </script>
 
-// Conditional Render
-{#if messages.length > 5}
-   <p>
-      Too many messages!   
-   </p>
-{:else if messages.length > 0}
-   <p>
-      {messages.length} messages
-   </p>
 
-{:else}
-   <p>
-      No messages   
-   </p>
-{/if}
-
-// Looping Render
 {#each messages as message, index}
+   {#if index % 2 === 0 }
+   <p class="text-red">
+     {index}. {message}
+   </p>
+   {:else}
    <p>
      {index}. {message}
    </p>
+   {/if}
 {/each}
+
+<style>
+   .text-red{
+      color: red;
+   }
+</style>
