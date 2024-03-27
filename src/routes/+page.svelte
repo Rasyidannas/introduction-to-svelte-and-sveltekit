@@ -1,5 +1,5 @@
 <script>
-   import Button from "../components/Button.svelte";
+   import CurrentYear from "../components/CurrentYear.svelte";
 </script>
 
-<Button/>
+<CurrentYear/>
