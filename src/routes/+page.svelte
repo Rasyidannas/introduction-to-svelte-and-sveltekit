@@ -1,5 +1,10 @@
 <script>
-   import CurrentYear from "../components/CurrentYear.svelte";
+   import Button from "../components/Button.svelte";
+
+   const obj = {
+      text: "Custom Buttom",
+      title: "Custom Title"
+   }
 </script>
 
-<CurrentYear/>
+<Button {...obj}/>

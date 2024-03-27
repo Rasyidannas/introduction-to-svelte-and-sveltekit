@@ -1,8 +1,10 @@
 <script>
-   let text = 'Button'
+   // this is for declare props
+   export let text = 'Button'
+   export let title
 </script>
 
-<button>{text}</button>
+<button {title}>{text}</button>
 
 <style>
    button{
