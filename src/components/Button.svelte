@@ -4,18 +4,19 @@
    const dispatch = createEventDispatcher()
 
    // this is for declare props
-   export let text = 'Button'
+   export let text
    export let title
 
    // reactiviy has reactive value / when value change it will re-render
    $: extendText = text + '!!!'
 
    const changeText= () => {
-      text = "Button Clicked"
       dispatch('addMsg', text)
+      text = "Button Clicked"
    }
 </script>
 
+<input bind:value={text}/>
 <button {title} on:click={changeText}>{extendText}</button>
 
 <style>
