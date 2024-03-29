@@ -1,24 +1,22 @@
 <script>
-   export let newMessage = "No click yet";
+   import msgStore from '../store/msgStore.js'
 
-   let messages = ['msg1', 'msg2', 'msg3', 'msg4', 'msg5', 'msg6']
    let selectedMsg = []
 
    $: msgPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
-         resolve(messages)
+         // using $ prefix is for subscribe or listen to the store
+         resolve($msgStore)
          reject('Could not load the messages')
       }, 2000)
    })
-
-   $: messages = [...messages, newMessage]
 </script>
 
 <!--Async Block-->
 {#await msgPromise}
    <p>Loading...</p>
 {:then messages}
-   {#each messages as msg }
+   {#each $msgStore as msg }
       <label>
          <input type="checkbox" bind:group={selectedMsg} value={msg} /> 
          {msg}

@@ -1,23 +1,20 @@
 <script>
-   // this is for send data to another component
-   import { createEventDispatcher } from 'svelte'
-   const dispatch = createEventDispatcher()
-
-   // this is for declare props
-   export let text
-   export let title
+   import msgStore from "../store/msgStore.js";
 
    // reactiviy has reactive value / when value change it will re-render
-   $: extendText = text + '!!!'
+   $: text = ($msgStore.length + 1) + 'th message'
+   $: inputText = text
 
    const changeText= () => {
-      dispatch('addMsg', text)
-      text = "Button Clicked"
+      //this will for update the store
+      msgStore.update(currentmsg => {
+         return [...currentmsg, inputText]
+      })
    }
 </script>
 
-<input bind:value={text}/>
-<button {title} on:click={changeText}>{extendText}</button>
+<input bind:value={inputText}/>
+<button on:click={changeText}>Add "{text}"</button>
 
 <style>
    button{
