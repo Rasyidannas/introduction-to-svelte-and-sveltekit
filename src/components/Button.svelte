@@ -1,4 +1,5 @@
 <script>
+   import { getContext } from 'svelte'
    import msgStore from "../store/msgStore.js";
 
    // reactiviy has reactive value / when value change it will re-render
@@ -11,10 +12,13 @@
          return [...currentmsg, inputText]
       })
    }
+
+   //this for get the context API
+   let exclam = getContext('exclamation')
 </script>
 
 <input bind:value={inputText}/>
-<button on:click={changeText}>Add "{text}"</button>
+<button on:click={changeText}>Add "{text}"{exclam}</button>
 
 <style>
    button{
