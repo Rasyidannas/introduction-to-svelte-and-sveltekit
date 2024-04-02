@@ -1,7 +1,9 @@
 <script>
-	let name = "Project";
+	import Settings from "./Settings.svelte";
+	import Feed from "./Feed.svelte";
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
+	<Settings />
+	<Feed />
 </main>
