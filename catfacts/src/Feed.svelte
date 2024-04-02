@@ -3,9 +3,17 @@
     import Fact from "./Fact.svelte";
 
     let factArray = [];
+    let currentID
 
     $: {
-        updateFacts($feedStore.amount);
+        if(currentID) {
+            clearInterval(currentID)
+            console.log('ID cleared...')
+        }
+
+        currentID = setInterval(() => {
+            updateFacts($feedStore.amount);
+        }, $feedStore.refresh * 1000)
     }
 
     const getRandomFact = async () => {
@@ -15,9 +23,7 @@
     }
 
     const updateFacts = async (amount) => {
-        if(amount < factArray.length) {
-            factArray.pop()
-        }
+        factArray.pop()
 
         //this will added the amount of facts to the array when range input is increased
         while(amount > factArray.length) {
@@ -25,10 +31,13 @@
         }
 
         factArray = [...factArray]
+        console.log('refreshed')
     }
 </script>
 
 <h2>Recent {$feedStore.amount} Facts</h2>
+<h5>Refresh Rate: {$feedStore.refresh}</h5>
+
 <ol>
     {#each factArray as fact }
         <li>
