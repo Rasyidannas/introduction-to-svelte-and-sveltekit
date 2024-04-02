@@ -6,14 +6,19 @@
     let currentID
 
     $: {
-        if(currentID) {
-            clearInterval(currentID)
-            console.log('ID cleared...')
-        }
 
-        currentID = setInterval(() => {
-            updateFacts($feedStore.amount);
-        }, $feedStore.refresh * 1000)
+        if(!$feedStore.stop) {
+            if(currentID) {
+                clearInterval(currentID)
+            }
+    
+            currentID = setInterval(() => {
+                updateFacts($feedStore.amount);
+            }, $feedStore.refresh * 1000)
+        } else {
+            clearInterval(currentID)
+            currentID = null
+        }
     }
 
     const getRandomFact = async () => {
@@ -37,11 +42,16 @@
 
 <h2>Recent {$feedStore.amount} Facts</h2>
 <h5>Refresh Rate: {$feedStore.refresh}</h5>
+<h5>Stop: {$feedStore.stop}</h5>
 
-<ol>
-    {#each factArray as fact }
-        <li>
-            <Fact fact={fact}/>
-        </li>
-    {/each}
-</ol>
+{#if factArray.length === 0}
+    <p>The facts are now loading and wil be sparking you joy soon...</p>
+{:else}
+    <ol>
+        {#each factArray as fact }
+            <li>
+                <Fact fact={fact}/>
+            </li>
+        {/each}
+    </ol>
+{/if}
