@@ -1,11 +1,8 @@
 <script>
-	import Child from "./Child.svelte";
-	let pressed = false
+	let name = 'world';
+	let innerWidth
 </script>
 
-<button on:click={() => pressed = !pressed}>Child Togller</button>
-{#if pressed}
-	<Child/>
-{:else}
-	<p>App Showing!</p>
-{/if}
+<h1>Hello {name}!</h1>
+<p>{innerWidth}</p>
+<svelte:window on:click={() => console.log('window clicked')} bind:innerWidth />
