@@ -7,6 +7,4 @@
    setContext('exclamation', '!');
 </script>
 
-<!--on:addMsg will listed dispatcher-->
-<Button />
-<Messages />
+<h1>This is homepage</h1>
