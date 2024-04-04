@@ -2,6 +2,7 @@
     <h2>Div for slots</h2>
     <slot/>
     <slot name="ex2"/>
+    <slot/>
 </div>
 
 <style>
